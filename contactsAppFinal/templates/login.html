@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="login">
+    <div class="left">
+        <div class="heading">
+            <h1>Welcome back</h1>
+            <p>Welcome back! Please enter your details.</p>
+        </div>
+        <form method="GET"  id="loginForm">
+            <label for="">Email</label>
+            <input type="email" name="email" id="mail" required placeholder="Enter your email">
+            <label for="">Password</label>
+            <input type="password" name="password" id="pass" required placeholder="**********">
+            <button type="submit" id="login-button">Sign in</button>
+        </form>
+    </div>
+    <div class="right">
+        <img src="../static/imgs/Right Side.png" alt="">
+    </div>
+</div>
+<script src="../static/js/login.js"></script>
+{% endblock %}
