@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block body %}
+<div id="spinner-container">
+    <div class="loader"></div>
+</div>
+<div class="contact">
+  <div class="avatar">
+    <img src="../static/imgs/Avatar.png" alt="" width="100px" height="100px">
+    <h2>Welcome 👏</h2>
+  </div>
+  <div class="contact-detalis">
+    <div class="heading">
+      <h2>Contact Details</h2>
+      <div class="add-button">
+        <i class="fa-solid fa-plus " style="color: white;"></i>
+      </div>
+    </div>
+    <div class="info-container">
+      <h2>My contact 😊</h2>
+      <div class="box-con">
+        <!-- Contacts will be appended here -->
+        <div class="box" style="display: none;">
+          <div class="name">Ahmed khaled</div>
+            <div class="buttons">
+              <i class="fa-solid fa-trash" style="color: #da1b1b;"></i>
+              <i class="fa-solid fa-eye" style="color: #2196f3;"></i>
+              <i class="fa-solid fa-arrows-spin" style="color: #009688;"></i>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../static/js/contacts.js"></script>
+{% endblock %}
