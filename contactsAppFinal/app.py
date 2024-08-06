@@ -10,11 +10,11 @@ app = Flask(__name__, template_folder='templates')
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-       # email = request.form.get('email')  not needed for now
-       # password = request.form.get('password') same as email
+        email = request.form.get('email')  not needed for now#not used currently
+        password = request.form.get('password') same as email#same as email
         conn=get_db_connection()
         cur = conn.cursor()
-        cur.execute("SELECT id FROM users WHERE email=? AND password=?")
+        cur.execute("SELECT * FROM users)
         data=cur.fetchall()
         cur.close()
         return jsonify(data=data)
