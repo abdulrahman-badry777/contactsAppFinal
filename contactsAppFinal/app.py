@@ -14,7 +14,7 @@ def login():
         password = request.form.get('password')#same as email
         conn=get_db_connection()
         cur = conn.cursor()
-        cur.execute('SELECT * FROM details' )
+        cur.execute('SELECT * FROM users' )
         data=cur.fetchall()
         cur.close()
         return jsonify(data=data)
