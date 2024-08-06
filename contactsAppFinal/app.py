@@ -10,8 +10,8 @@ app = Flask(__name__, template_folder='templates')
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form.get('email')  not needed for now#not used currently
-        password = request.form.get('password') same as email#same as email
+        email = request.form.get('email')  #not used currently
+        password = request.form.get('password') #same as email
         conn=get_db_connection()
         cur = conn.cursor()
         cur.execute("SELECT * FROM users)
