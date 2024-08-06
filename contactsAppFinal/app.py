@@ -10,14 +10,14 @@ app = Flask(__name__, template_folder='templates')
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
+        email = request.form.get('email')#if we need to use it later ,remove it if not needed at end of project
+        password = request.form.get('password')#same as email
         conn=get_db_connection()
         cur = conn.cursor()
-        cur.execute('SELECT * FROM contatcs' )
+        cur.execute('SELECT * FROM details' )
         data=cur.fetchall()
         cur.close()
-        jsonify(data=data)
+        return jsonify(data=data)
 
     else:
         return render_template("login.html")
