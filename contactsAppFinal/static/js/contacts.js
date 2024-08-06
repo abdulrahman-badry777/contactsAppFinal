@@ -32,7 +32,7 @@ if (addbut != null) {
 let contactdiv = document.querySelector('.contact');
 let detailsdiv = document.querySelector('.contact-detalis');
 var theId = 0;
-if(window.location.pathname == '/contacts') {
+if(window.location.pathname == '/contacts_page') {
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/contacts')
         .then(response => response.json())
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(data);
             let box_con = document.querySelector(".box-con");
             data.forEach(contact => {
-                if(contact.user_id === parseInt(window.localStorage.getItem("user_id")) ) {
+                if(contact[1] === parseInt(window.localStorage.getItem("user_id")) ) {
                     // Clone icons
                 let delIcon = document.querySelector('.fa-trash').cloneNode(true);
                 let viewIcon = document.querySelector('.fa-eye').cloneNode(true);
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let buttons = document.createElement("div");
 
                 // Set innerHTML and classes
-                namecontact.innerHTML = contact.full_name;
+                namecontact.innerHTML = contact[2];
                 buttons.classList.add("buttons");
                 newcontact.classList.add("box");
                 namecontact.classList.add("name");
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Add event listener to delete icon
                 delIcon.addEventListener('click', () => {
-                    fetch(`/contact/${contact.id}/delete/`, {
+                    fetch(`/contact/${parseInt(contact[0])}/delete/`, {
                         method: 'POST'
                     })
                     .then(response => response.json())
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Add event listener to Update icon
                 updateIcon.addEventListener('click', function () {
-                    theId = contact.id;
+                    theId = parseInt(contact[0]);
                     window.localStorage.setItem("id",`${theId}`);
                     window.location.pathname = `/contact/${theId}/edit`;
                 })

@@ -38,7 +38,7 @@ fetch('/login', {
             icon: 'success',
             confirmButtonText: 'OK'
         }).then(() => {
-            window.location.pathname = `/contacts`;
+            window.location.pathname = `/contacts_page`;
         });
     } else {
         Swal.fire({
