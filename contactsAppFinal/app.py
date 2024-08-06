@@ -10,17 +10,19 @@ app = Flask(__name__, template_folder='templates')
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form.get('email')#if we need to use it later ,remove it if not needed at end of project
-        password = request.form.get('password')#same as email
+        email = request.form.get('email')
+        password = request.form.get('password')
         conn=get_db_connection()
         cur = conn.cursor()
-        cur.execute('SELECT * FROM users' )
+        cur.execute("SELECT id FROM users WHERE email=? AND password=?", (email, password))
         data=cur.fetchall()
         cur.close()
-        return jsonify(data=data)
+        if data:
+            session['user_id'] = data[0]
+            return jsonify(data=data)
 
     else:
-        return render_template("login.html")
+        return render_template("login.html",custom_css="login.css")
     
 
     #The contact Details page (Mohamed Ali)
