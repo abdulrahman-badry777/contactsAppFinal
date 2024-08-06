@@ -91,6 +91,39 @@ def delete_contact(contact_id):
     cur.close()
 
     return redirect(url_for('contact_list'))
+    #Added the add contact function
+@app.route('/add_contact', methods=['GET', 'POST'])
+def add_contact():
+    if request.method == 'POST':
+        # Extract data from the form
+        name = request.form.get('name')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        address = request.form.get('address')
+        
+        # Validate the form inputs
+        if not name or not email or not phone:
+            return jsonify({"error": "Name, email, and phone are required fields"}), 400
+        
+        conn = get_db_connection()
+        cur = conn.cursor()
+        
+        try:
+            # Insert the new contact into the database
+            cur.execute('INSERT INTO contacts (name, email, phone, address) VALUES (%s, %s, %s, %s)',
+                        (name, email, phone, address))
+            conn.commit()
+            cur.close()
+            conn.close()
+            return redirect(url_for('add_contact'))
+        except Exception as e:
+            cur.close()
+            conn.close()
+            return jsonify({"error": str(e)}), 500
+    
+    # Render the add contact form
+    return render_template('add_contact.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
