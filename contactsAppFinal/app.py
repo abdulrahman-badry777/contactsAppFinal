@@ -81,13 +81,12 @@ def delete_contact(contact_id):
 @app.route('/add_contact', methods=['POST'])
 def add_contact():
     data = request.get_json()
-    name = data.get('name')
+    name = data.get('full-name')
     email = data.get('email')
-    phone = data.get('phone')
-    address = data.get('address')
+    phone = data.get('phone-number')
 
-    if not name or not email or not phone:
-        return jsonify({"error": "Name, email, and phone are required fields"}), 400
+    #if not name or not email or not phone:    already handled from javascript no need for it
+       # return jsonify({"error": "Name, email, and phone are required fields"}), 400
 
     conn = get_db_connection()
     cur = conn.cursor()
