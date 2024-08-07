@@ -34,6 +34,12 @@ def contact_list():
     conn.close()
     return jsonify(contacts)
 
+
+@app.route("/contactList")
+def contactList():
+   return render_template("contacts.html",custom_css="contacts.css")
+
+
 @app.route("/contact/<int:contact_id>", methods=['GET'])
 def view_contact(contact_id):
     conn = get_db_connection()
@@ -106,7 +112,7 @@ def add_contact():
 
  @app.route('/addContact')
  def addContact():
-    return render_template("add_contact",custom_css="add_contact")
+    return render_template("add_contact",custom_css="add_contact.css")
 
 if __name__ == "__main__":
     app.run(debug=True)
