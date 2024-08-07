@@ -79,6 +79,8 @@ def view_contact(contact_id):
     else:
         return jsonify({"error": "Contact not found"}), 404
 
+
+
         
 
 @app.route("/contact/<int:contact_id>/edit", methods=['POST'])
@@ -87,18 +89,22 @@ def edit_contact(contact_id):
     cur = conn.cursor()
     data = request.get_json()
 
-    name = data.get('name')
+    full_name = data.get('full_name')
     email = data.get('email')
-    phone = data.get('phone')
+    phone_number = data.get('phone_number')
 
-    if not name or not email or not phone:
-        return jsonify({"error": "Name, email, and phone are required fields"}), 400
+    # التحقق من وجود جميع الحقول المطلوبة
+    if not full_name or not email or not phone_number:
+        return jsonify({"error": "Full name, email, and phone number are required fields"}), 400
 
-    cur.execute('UPDATE contacts SET name = %s, email = %s, phone = %s WHERE id = %s',
-                (name, email, phone, contact_id))
+    # تنفيذ عملية التحديث في قاعدة البيانات
+    cur.execute('UPDATE contacts SET full_name = %s, email = %s, phone_number = %s WHERE id = %s',
+                (full_name, email, phone_number, contact_id))
     conn.commit()
     cur.close()
     conn.close()
+    
+    # إرجاع رسالة نجاح
     return jsonify({"success": "Contact updated successfully"})
 
 
