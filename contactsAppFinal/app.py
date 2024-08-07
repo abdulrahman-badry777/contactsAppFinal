@@ -22,7 +22,30 @@ def login():
         return render_template("login.html",custom_css="login.css")
     
 
+#Routes of render Templetes 
+@app.route("/contactList")
+def contactList():
+   return render_template("contacts.html",custom_css="contacts.css")
+
+@app.route("/View")
+def View():
+   return render_template("view.html",custom_css="view.css")
+
+@app.route('/addContact')
+ def addContact():
+    return render_template("add_contact.html,custom_css="add_contact.css")
+
+@app.route("/edit_contact")
+def edit_contact():
+   return render_template("edit_contact.html",custom_css="edit_contact.css")
+
+   @app.route("/Update_Contact")
+def Update_Contact():
+   return render_template("Update_Contact.html",custom_css="Update_Contact.css")
+
+
  #The contact Details page (Mohamed Ali)
+ 
 
 @app.route("/contacts", methods=['GET'])
 def contact_list(): 
@@ -35,9 +58,6 @@ def contact_list():
     return jsonify(contacts)
 
 
-@app.route("/contactList")
-def contactList():
-   return render_template("contacts.html",custom_css="contacts.css")
 
 
 @app.route("/contact/<int:contact_id>", methods=['GET'])
@@ -52,6 +72,9 @@ def view_contact(contact_id):
         return jsonify(contact)
     else:
         return jsonify({"error": "Contact not found"}), 404
+
+
+        
 
 @app.route("/contact/<int:contact_id>/edit", methods=['POST'])
 def edit_contact(contact_id):
@@ -72,6 +95,8 @@ def edit_contact(contact_id):
     cur.close()
     conn.close()
     return jsonify({"success": "Contact updated successfully"})
+
+
 
 @app.route("/contact/<int:contact_id>/delete", methods=['POST'])
 def delete_contact(contact_id):
@@ -110,9 +135,7 @@ def add_contact():
         conn.close()
         return jsonify({"error": str(e)}), 500
 
- @app.route('/addContact')
- def addContact():
-    return render_template("add_contact",custom_css="add_contact.css")
+ 
 
 if __name__ == "__main__":
     app.run(debug=True)
