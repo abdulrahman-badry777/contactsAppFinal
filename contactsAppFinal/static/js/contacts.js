@@ -86,11 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Add event listener to Update icon
                 updateIcon.addEventListener('click', function () {
                     theId = parseInt(contact[0]);
-                    window.localStorage.setItem("id",`${theId}`);
+                    window.localStorage.setItem("con_id",`${theId}`);
                     window.location.pathname = `/edit_contact`;
                 })
                 // Add event listener to View icon
                 viewIcon.addEventListener('click',function () {
+                    window.localStorage.setItem("con_id",`${contact[0]}`);
                     window.location.pathname = `/View`;
                 })
                 
