@@ -36,7 +36,7 @@ def View():
         return render_template("add_contact.html",custom_css="add_contact.css")
 
 @app.route("/edit_contact")
-def edit_contact():
+def edit_contact_page():
         return render_template("edit_contact.html",custom_css="edit_contact.css")
 
 @app.route("/Update_Contact")
