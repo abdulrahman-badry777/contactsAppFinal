@@ -81,6 +81,7 @@ def delete_contact(contact_id):
 @app.route('/add_contact', methods=['POST'])
 def add_contact():
     data = request.get_json()
+    id   = data.get('Uid')
     name = data.get('full-name')
     email = data.get('email')
     phone = data.get('phone-number')
@@ -92,8 +93,8 @@ def add_contact():
     cur = conn.cursor()
 
     try:
-        cur.execute('INSERT INTO contacts (name, email, phone, address) VALUES (%s, %s, %s, %s)',
-                    (name, email, phone, address))
+        cur.execute('INSERT INTO contacts (user_id,name, email, phone) VALUES (%s, %s, %s, %s)',
+                    (id,name, email, phone))
         conn.commit()
         cur.close()
         conn.close()
