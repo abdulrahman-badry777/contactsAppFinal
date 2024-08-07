@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         icon: "success",
                         confirmButtonText: "OK"
                     }).then(() => {
-                        window.location.pathname = '/contacts';
+                        window.location.pathname = '/contactList';
                     });
                 } else {
                     Swal.fire({
