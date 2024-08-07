@@ -69,10 +69,15 @@ def view_contact(contact_id):
     cur.close()
     conn.close()
     if contact:
-        return jsonify(contact)
+        contact_dict = {
+            'id': contact[0],
+            'name': contact[2],
+            'email': contact[3],
+            'phone': contact[4]
+        }
+        return jsonify(contact_dict)
     else:
         return jsonify({"error": "Contact not found"}), 404
-
 
         
 
