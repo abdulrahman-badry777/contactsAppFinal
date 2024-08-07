@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const iti = window.intlTelInput(document.getElementById('phone_number'), {
+    const phoneInput =document.getElementById('phone_number');
+    const iti = window.intlTelInput(phoneInput, {
         initialCountry: "auto",
         geoIpLookup: function (callback) {
             fetch('https://ipinfo.io/json', { headers: { 'Accept': 'application/json' } })
