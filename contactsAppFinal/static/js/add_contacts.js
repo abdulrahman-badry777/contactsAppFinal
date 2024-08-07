@@ -61,6 +61,7 @@ document.getElementById('newContactForm').addEventListener('submit', function(ev
                         }
                     })
                     .then(data => {
+                        if(data.success==="Contact added successfully"){
                         Swal.fire({
                             title: 'Success!',
                             text: data.message,
@@ -68,7 +69,7 @@ document.getElementById('newContactForm').addEventListener('submit', function(ev
                             confirmButtonText: 'OK'
                         }).then(() => {
                             window.location.pathname = '/contacts';
-                        });
+                        });}
                     })
                     .catch(error => {
                         Swal.fire({
