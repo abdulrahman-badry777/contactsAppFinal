@@ -26,13 +26,13 @@ document.addEventListener('mouseover', function (e) {
 let addbut = document.querySelector('.add-button');
 if (addbut != null) {
     addbut.onclick = function () {
-        window.location.pathname = '/add_contact';
+        window.location.pathname = '/addContact';
     }
 }
 let contactdiv = document.querySelector('.contact');
 let detailsdiv = document.querySelector('.contact-detalis');
 var theId = 0;
-if(window.location.pathname == '/contacts_page') {
+if(window.location.pathname == '/contactList') {
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/contacts')
         .then(response => response.json())
@@ -87,11 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateIcon.addEventListener('click', function () {
                     theId = parseInt(contact[0]);
                     window.localStorage.setItem("id",`${theId}`);
-                    window.location.pathname = `/contact/${theId}/edit`;
+                    window.location.pathname = `/`;
                 })
                 // Add event listener to View icon
                 viewIcon.addEventListener('click',function () {
-                    window.location.pathname = `/contact/${contact.id}`;
+                    window.location.pathname = `/`;
                 })
                 
                 
