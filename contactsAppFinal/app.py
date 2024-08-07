@@ -129,13 +129,17 @@ def add_contact():
             return jsonify({"error": "Contact already exists"}), 400
 
         # Insert the new contact
-        cur.execute('INSERT INTO contacts (user_id, name, email, phone_number) VALUES (%s, %s, %s, %s)',
+        cur.execute('INSERT INTO contacts (user_id, full_name, email, phone_number) VALUES (%s, %s, %s, %s)',
                     (id, name, email, phone))
         conn.commit()
         return jsonify({"success": "Contact added successfully"})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+    finally:
+        cur.close()
+        conn.close()
 
     finally:
         cur.close()
