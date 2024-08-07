@@ -7,6 +7,6 @@ def get_db_connection():
         password='ahmed2006', #change password to whatever you have it set
         host='localhost',
         port=3306,
-        database='internship'
+        database='internship'#choose your perfered database 
     )
     return conn
