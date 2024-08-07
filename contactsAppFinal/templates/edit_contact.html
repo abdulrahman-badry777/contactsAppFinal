@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block body %}
+<link rel="stylesheet" href="edit_contact.css">
+</head>
+<body>
+<div id="spinner-container">
+    <div class="loader"></div>
+</div>
+<div class="edit-contact">
+    <div class="avatar">
+        <img src="OIP (1).jpeg" alt="" width="100px" height="100px">
+     
+    </div>
+    <div class="contact-details">
+        <div class="heading">
+            <h2>Edit Contact</h2>
+        </div>
+        <form id="editContactForm" method="post">
+            <div class="details">
+                <p><strong>Name:</strong> <input type="text" id="editContactName" name="name"></p>
+                <p><strong>Email:</strong> <input type="email" id="editContactEmail" name="email"></p>
+                <p><strong>Phone:</strong> <input type="text" id="editContactPhone" name="phone_number"></p>
+            </div>
+            <button id="saveEditButton">Save Changes</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}
