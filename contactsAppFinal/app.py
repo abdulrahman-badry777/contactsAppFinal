@@ -112,28 +112,34 @@ def delete_contact(contact_id):
 @app.route('/add_contact', methods=['POST'])
 def add_contact():
     data = request.get_json()
-    id   = data.get('Uid')
+    id = data.get('Uid')
     name = data.get('full-name')
     email = data.get('email')
     phone = data.get('phone-number')
-
-    #if not name or not email or not phone:    already handled from javascript no need for it
-       # return jsonify({"error": "Name, email, and phone are required fields"}), 400
 
     conn = get_db_connection()
     cur = conn.cursor()
 
     try:
-        cur.execute('INSERT INTO contacts (user_id,name, email, phone) VALUES (%s, %s, %s, %s)',
-                    (id,name, email, phone))
+        # Check if the contact already exists
+        cur.execute('SELECT * FROM contacts WHERE email = %s OR phone_number = %s', (email, phone))
+        check = cur.fetchall()
+
+        if check:
+            return jsonify({"error": "Contact already exists"}), 400
+
+        # Insert the new contact
+        cur.execute('INSERT INTO contacts (user_id, name, email, phone_number) VALUES (%s, %s, %s, %s)',
+                    (id, name, email, phone))
         conn.commit()
-        cur.close()
-        conn.close()
         return jsonify({"success": "Contact added successfully"})
+
     except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    finally:
         cur.close()
         conn.close()
-        return jsonify({"error": str(e)}), 500
 
  
 
