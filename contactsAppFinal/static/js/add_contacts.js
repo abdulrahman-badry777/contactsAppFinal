@@ -1,4 +1,17 @@
+document.addEventListener("DOMContentLoaded" ,function(){
+const iti = window.intlTelInput(document.getElementById('phone_number'), {
+        initialCountry: "auto",
+        geoIpLookup: function(callback) {
+            fetch('https://ipinfo.io/json', { headers: { 'Accept': 'application/json' } })
+                .then(response => response.json())
+                .then(data => callback(data.country))
+                .catch(() => callback('us'));
+        },
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+    });
+
 document.getElementById('newContactForm').addEventListener('submit', function(event) {
+   
     event.preventDefault();
 
     const Uid = window.localStorage.getItem("user_id");
@@ -15,17 +28,6 @@ document.getElementById('newContactForm').addEventListener('submit', function(ev
         });
         return;
     }
-
-    const iti = window.intlTelInput(document.getElementById('phone_number'), {
-        initialCountry: "auto",
-        geoIpLookup: function(callback) {
-            fetch('https://ipinfo.io/json', { headers: { 'Accept': 'application/json' } })
-                .then(response => response.json())
-                .then(data => callback(data.country))
-                .catch(() => callback('us'));
-        },
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
-    });
 
     const checkphone = iti.isValidNumber();
     if (checkphone) {
@@ -98,3 +100,4 @@ document.getElementById('newContactForm').addEventListener('submit', function(ev
         });
     }
 });
+ }
