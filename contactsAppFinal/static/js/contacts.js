@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Add event listener to delete icon
                 delIcon.addEventListener('click', () => {
-                    fetch(`/contact/${parseInt(contact[0])}/delete/`, {
+                    fetch(`/contact/${parseInt(contact[0])}/delete`, {
                         method: 'POST'
                     })
                     .then(response => response.json())
