@@ -104,6 +104,9 @@ def add_contact():
         conn.close()
         return jsonify({"error": str(e)}), 500
 
+ @app.route('/addContact')
+ def addContact():
+    return render_template("add_contact",custom_css="add_contact")
 
 if __name__ == "__main__":
     app.run(debug=True)
