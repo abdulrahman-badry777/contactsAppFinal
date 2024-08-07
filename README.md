@@ -2,11 +2,11 @@ A robust contact management application designed with HTML, CSS, and JavaScript 
 
 Contributions:
 
-Abdelrahman
-Ahmed Haytham
-Mohamed Ali
-Mohamed Khater
-Enjoy 😊
+-Abdelrahman
+-Ahmed Haytham
+-Mohamed Ali
+-Mohamed Khater
+-Enjoy 😊
 
 [Video Link](https://drive.google.com/file/d/1dUhUtixcN0EqXLvJlbEMwGHU6XAC_NA8/view?usp=drive_link)
 
