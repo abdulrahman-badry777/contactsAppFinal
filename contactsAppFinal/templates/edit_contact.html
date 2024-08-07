@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div id="spinner-container">
+        <div class="loader"></div>
+    </div>
+    <div class="edit-contact">
+        <div class="avatar">
+            <img src="../static/imgs/Avatar.png" alt="Avatar" width="100px" height="100px">
+        </div>
+        <div class="contact-details">
+            <div class="heading">
+                <h2>Edit Contact</h2>
+            </div>
+            <div id="contactInfo">
+                <p><strong>Full Name:</strong> <span id="contactFullName"></span></p>
+                <p><strong>Email:</strong> <span id="contactEmail"></span></p>
+                <p><strong>Phone Number:</strong> <span id="contactPhoneNumber"></span></p>
+                <button id="editButton">Edit</button>
+            </div>
+            <form id="editContactForm" style="display:none;">
+                <div class="details">
+                    <p><strong>Full Name:</strong> <input type="text" id="editContactFullName" name="full_name"></p>
+                    <p><strong>Email:</strong> <input type="email" id="editContactEmail" name="email"></p>
+                    <p><strong>Phone Number:</strong> <input type="text" id="editContactPhoneNumber" name="phone_number"></p>
+                </div>
+                <button type="button" id="saveEditButton">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    <script src="../static/js/edit_contact.js"></script>
+{% endblock %}
