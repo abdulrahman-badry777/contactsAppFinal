@@ -14,7 +14,7 @@ def login():
         password = request.form.get('password') #same as email
         conn=get_db_connection()
         cur = conn.cursor()
-        cur.execute("SELECT * FROM users)
+        cur.execute("SELECT * FROM users")
         data=cur.fetchall()
         cur.close()
         return jsonify(data=data)
@@ -33,13 +33,13 @@ def View():
 
 @app.route('/addContact')
  def addContact():
-    return render_template("add_contact.html,custom_css="add_contact.css")
+    return render_template("add_contact.html",custom_css="add_contact.css")
 
 @app.route("/edit_contact")
 def edit_contact():
    return render_template("edit_contact.html",custom_css="edit_contact.css")
 
-   @app.route("/Update_Contact")
+@app.route("/Update_Contact")
 def Update_Contact():
    return render_template("Update_Contact.html",custom_css="Update_Contact.css")
 
