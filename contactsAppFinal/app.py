@@ -32,7 +32,7 @@ def View():
         return render_template("view.html",custom_css="view.css")
 
 @app.route('/addContact')
- def addContact():
+def addContact():
         return render_template("add_contact.html",custom_css="add_contact.css")
 
 @app.route("/edit_contact")

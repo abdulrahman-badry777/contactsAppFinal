@@ -4,9 +4,9 @@ import mariadb
 def get_db_connection():
     conn = mariadb.connect(
         user='root',
-        password='ahmed2006', #change password to whatever you have it set
+        password='root', #change password to whatever you have it set
         host='localhost',
         port=3306,
-        database='internship'#choose your perfered database 
+        database='contacts'#choose your perfered database 
     )
     return conn
