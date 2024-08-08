@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => {
-            // إخفاء الـ spinner
             spinner.style.display = 'none';
             console.error('Error:', error);
             alert('حدث خطأ أثناء تحميل بيانات الاتصال');

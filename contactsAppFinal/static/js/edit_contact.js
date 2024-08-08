@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactId = window.localStorage.getItem("con_id");
 
     const spinnerContainer = document.getElementById('spinner-container');
-    spinnerContainer.style.display = 'flex'; // عرض الـ spinner
+    spinnerContainer.style.display = 'flex'; 
 
     fetch(`/contact/${contactId}`)
         .then(response => response.json())
         .then(data => {
-            spinnerContainer.style.display = 'none'; // إخفاء الـ spinner
+            spinnerContainer.style.display = 'none'; 
             
             if (data.error) {
                 alert(data.error);
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => {
-            spinnerContainer.style.display = 'none'; // إخفاء الـ spinner
+            spinnerContainer.style.display = 'none'; 
             console.error('Error:', error);
             alert('Erorr while loading');
         });
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('حدث خطأ أثناء تحديث بيانات الاتصال');
+            alert('Error while loading');
         });
     });
 });
