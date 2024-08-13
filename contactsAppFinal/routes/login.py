@@ -10,9 +10,13 @@ def login():
         password = request.form.get('password')
         conn = get_db_connection()
         cur = conn.cursor()
-        cur.execute("SELECT * FROM users")
-        data = cur.fetchall()
+        cur.execute("SELECT id FROM users WHERE email=? AND password=?", (email, password))
+        user = cur.fetchall()
         cur.close()
-        return jsonify(data=data)
+        if user:
+            session['user_id'] = user[0]
+            return jsonify(data=user) 
+        else:
+           return redirect(url_for("login_render"))
     else:
         return render_template("login.html", custom_css="login.css")
