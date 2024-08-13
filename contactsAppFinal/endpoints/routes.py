@@ -1,27 +1,34 @@
-from app import app
-from flask import Blueprint
+from flask import Blueprint, render_template
+
+login_rednerBp=  Blueprint('login_renderBp', __name__)
+contactListBp=  Blueprint('contactListBp', __name__)
+ViewBp=  Blueprint('ViewBp', __name__)
+addContactBp =  Blueprint('addContactBp', __name__)
+edit_contactBp=  Blueprint('edit_contactBp', __name__)
+Update_ContactBp=  Blueprint('Update_ContactBp', __name__)
+
 
 #Routes of render Templetes
-@app.route("/")
+@login_renderBp.route("/")
 def login_render():
         return render_template("login.html",custom_css="login.css")
 
-@app.route("/contactList")
+@contactListBp.route("/contactList")
 def contactList():
         return render_template("contacts.html",custom_css="contacts.css")
 
-@app.route("/View")
+@ViewBp.route("/View")
 def View():
-        return render_template("view.html",custom_css="view.css")
+        return render_template("view_contact.html",custom_css="view_contact.css")
 
-@app.route('/addContact')
+@addContactBp.route('/addContact')
 def addContact():
         return render_template("add_contact.html",custom_css="add_contact.css")
 
-@app.route("/edit_contact")
+@edit_contactBp.route("/edit_contact")
 def edit_contact_page():
         return render_template("edit_contact.html",custom_css="edit_contact.css")
 
-@app.route("/Update_Contact")
+@Update_ContactBp.route("/Update_Contact")
 def Update_Contact():
         return render_template("Update_Contact.html",custom_css="Update_Contact.css")
