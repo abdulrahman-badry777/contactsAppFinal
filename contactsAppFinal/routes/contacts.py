@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify,session,redirect,url_for
 from utils.establishDBConnection import get_db_connection
 
 contacts_bp = Blueprint('contacts', __name__)
@@ -9,6 +9,8 @@ def contactList():
 
 @contacts_bp.route("/contacts", methods=['GET'])
 def contact_list():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute('SELECT * FROM contacts')
