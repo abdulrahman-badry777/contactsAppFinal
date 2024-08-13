@@ -3,7 +3,7 @@ from utils.establishDBConnection import get_db_connection
 
 login_bp = Blueprint('login', __name__)
 
-@login_bp.route("/login", methods=['GET', 'POST'])
+@login_bp.route("/", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form.get('email')
