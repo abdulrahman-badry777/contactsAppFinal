@@ -1,18 +1,14 @@
-from flask import Blueprint, render_template, request, jsonify,session,redirect,url_for
+from flask import Blueprint, render_template, request, jsonify
 from utils.establishDBConnection import get_db_connection
 
 contacts_bp = Blueprint('contacts', __name__)
 
 @contacts_bp.route("/contactList")
 def contactList():
-     if 'user_id' not in session:
-        return redirect(url_for('login'))
     return render_template("contacts.html", custom_css="contacts.css")
 
 @contacts_bp.route("/contacts", methods=['GET'])
 def contact_list():
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute('SELECT * FROM contacts')
@@ -23,8 +19,6 @@ def contact_list():
 
 @contacts_bp.route("/contact/<int:contact_id>", methods=['GET'])
 def view_contact(contact_id):
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute('SELECT * FROM contacts WHERE id = %s', (contact_id,))
@@ -44,8 +38,6 @@ def view_contact(contact_id):
 
 @contacts_bp.route("/contact/<int:contact_id>/edit", methods=['POST'])
 def edit_contact(contact_id):
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
     conn = get_db_connection()
     cur = conn.cursor()
     data = request.get_json()
@@ -76,8 +68,6 @@ def delete_contact(contact_id):
 
 @contacts_bp.route('/add_contact', methods=['POST'])
 def add_contact():
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
     data = request.get_json()
     id = data.get('Uid')
     name = data.get('full-name')
