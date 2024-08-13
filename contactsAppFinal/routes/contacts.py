@@ -70,6 +70,8 @@ def delete_contact(contact_id):
 
 @contacts_bp.route('/add_contact', methods=['POST'])
 def add_contact():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
     data = request.get_json()
     id = data.get('Uid')
     name = data.get('full-name')
