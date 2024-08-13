@@ -1,6 +1,12 @@
-from flask import Blueprint
+from flask import Blueprint,Flask, render_template, request, redirect, url_for, session, jsonify
+from utils.establishDBConnection.get_db_connection
 
 loginBp= Blueprint("loginBp",__name__)
+contactsBp= Blueprint("contactsBp",__name__)
+viewContactBp= Blueprint("viewContactBp",__name__)
+editcontactBp= Blueprint("editcontactBp",__name__)
+DeleteContactBp= Blueprint("DeleteContactBp",__name__)
+add_conatactBp= Blueprint("add_conatactBp",__name__)
 
 @loginBp.route("/login", methods=['GET', 'POST'])
 def login():
@@ -17,32 +23,8 @@ def login():
         return render_template("login.html",custom_css="login.css")
     
 
-#Routes of render Templetes 
-@app.route("/contactList")
-def contactList():
-        return render_template("contacts.html",custom_css="contacts.css")
-
-@app.route("/View")
-def View():
-        return render_template("view.html",custom_css="view.css")
-
-@app.route('/addContact')
-def addContact():
-        return render_template("add_contact.html",custom_css="add_contact.css")
-
-@app.route("/edit_contact")
-def edit_contact_page():
-        return render_template("edit_contact.html",custom_css="edit_contact.css")
-
-@app.route("/Update_Contact")
-def Update_Contact():
-        return render_template("Update_Contact.html",custom_css="Update_Contact.css")
-
-
  #The contact Details page (Mohamed Ali)
- 
-
-@app.route("/contacts", methods=['GET'])
+@contactsBp.route("/contacts", methods=['GET'])
 def contact_list(): 
     conn = get_db_connection()
     cur = conn.cursor()
@@ -53,9 +35,7 @@ def contact_list():
     return jsonify(contacts)
 
 
-
-
-@app.route("/contact/<int:contact_id>", methods=['GET'])
+@viewContactBp.route("/contact/<int:contact_id>", methods=['GET'])
 def view_contact(contact_id):
     conn = get_db_connection()
     cur = conn.cursor()
@@ -78,7 +58,7 @@ def view_contact(contact_id):
 
         
 
-@app.route("/contact/<int:contact_id>/edit", methods=['POST'])
+@editcontactBp.route("/contact/<int:contact_id>/edit", methods=['POST'])
 def edit_contact(contact_id):
     conn = get_db_connection()
     cur = conn.cursor()
@@ -104,7 +84,7 @@ def edit_contact(contact_id):
 
 
 
-@app.route("/contact/<int:contact_id>/delete", methods=['POST'])
+@DeleteContactBp.route("/contact/<int:contact_id>/delete", methods=['POST'])
 def delete_contact(contact_id):
     conn = get_db_connection()
     cur = conn.cursor()
@@ -115,7 +95,7 @@ def delete_contact(contact_id):
     return jsonify({"success": "Contact deleted successfully"})
 
 # Added the add contact function
-@app.route('/add_contact', methods=['POST'])
+@add_conatactBp.route('/add_contact', methods=['POST'])
 def add_contact():
     data = request.get_json()
     id = data.get('Uid')
