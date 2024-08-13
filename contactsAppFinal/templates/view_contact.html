@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="../static/css/view_contact.css">
+{% endblock %}
 {% block body %}
-<link rel="stylesheet" href="view.css">
+<link rel="stylesheet" href="view_contact.css">
 <div id="spinner-container">
     <div class="loader"></div>
 </div>
@@ -16,6 +19,9 @@
             <p><strong>Name:</strong> <span id="contactName"></span></p>
             <p><strong>Email:</strong> <span id="contactEmail"></span></p>
             <p><strong>Phone:</strong> <span id="contactPhone"></span></p>
+        </div>
+        <div class="button-container">
+            <button id="backButton">Back to Contact List</button>
         </div>
     </div>
 </div>
