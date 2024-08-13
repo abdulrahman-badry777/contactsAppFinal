@@ -5,7 +5,7 @@ contactListBp=  Blueprint('contactListBp', __name__)
 ViewBp=  Blueprint('ViewBp', __name__)
 addContactBp =  Blueprint('addContactBp', __name__)
 edit_contactBp=  Blueprint('edit_contactBp', __name__)
-Update_ContactBp=  Blueprint('Update_ContactBp', __name__)
+
 
 
 #Routes of render Templetes
@@ -29,6 +29,4 @@ def addContact():
 def edit_contact_page():
         return render_template("edit_contact.html",custom_css="edit_contact.css")
 
-@Update_ContactBp.route("/Update_Contact")
-def Update_Contact():
-        return render_template("Update_Contact.html",custom_css="Update_Contact.css")
+
