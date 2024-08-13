@@ -13,7 +13,6 @@ def login():
         cur.execute("SELECT id FROM users WHERE email=? AND password=?", (email, password))
         user = cur.fetchall()
         cur.close()
-       return jsonify(data=user) 
-    
+        return jsonify(data=user) 
     else:
         return render_template("login.html", custom_css="login.css")
