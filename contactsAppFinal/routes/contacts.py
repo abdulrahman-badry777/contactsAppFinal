@@ -21,6 +21,8 @@ def contact_list():
 
 @contacts_bp.route("/contact/<int:contact_id>", methods=['GET'])
 def view_contact(contact_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute('SELECT * FROM contacts WHERE id = %s', (contact_id,))
