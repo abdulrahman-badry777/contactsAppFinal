@@ -5,6 +5,8 @@ contacts_bp = Blueprint('contacts', __name__)
 
 @contacts_bp.route("/contactList")
 def contactList():
+     if 'user_id' not in session:
+        return redirect(url_for('login'))
     return render_template("contacts.html", custom_css="contacts.css")
 
 @contacts_bp.route("/contacts", methods=['GET'])
