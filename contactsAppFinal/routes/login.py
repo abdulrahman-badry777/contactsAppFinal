@@ -17,6 +17,6 @@ def login():
             session['user_id'] = user[0]
             return jsonify(data=user) 
         else:
-           return redirect(url_for("login_render"))
+           return redirect(url_for("login"))
     else:
         return render_template("login.html", custom_css="login.css")
