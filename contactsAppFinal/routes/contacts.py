@@ -40,6 +40,8 @@ def view_contact(contact_id):
 
 @contacts_bp.route("/contact/<int:contact_id>/edit", methods=['POST'])
 def edit_contact(contact_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
     conn = get_db_connection()
     cur = conn.cursor()
     data = request.get_json()
