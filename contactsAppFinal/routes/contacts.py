@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify
-from utils.establishDBConnection import get_db_connection
+from contactsAppFinal.utils.establishDBConnection import get_db_connection
 
 contacts_bp = Blueprint('contacts', __name__)
 
