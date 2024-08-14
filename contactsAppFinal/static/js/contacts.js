@@ -2,7 +2,6 @@ setTimeout(function() {
     document.getElementById('spinner-container').style.display = 'none';
 }, 1000);
 
-// Function to add animation on icon hover
 document.addEventListener('mouseover', function (e) {
     if (e.target.classList.contains("fa-trash")) {
         e.target.classList.add("fa-bounce");
@@ -70,18 +69,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Add event listener to delete icon
                 delIcon.addEventListener('click', () => {
-                    fetch(`/contact/${parseInt(contact[0])}/delete`, {
-                        method: 'POST'
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success === "Contact deleted successfully") {
-                            delIcon.parentElement.parentElement.remove(); // REMOVE FROM DOM
-                        } else {
-                            console.error('Failed to delete contact');
+                    Swal.fire({
+                        title: 'Are you sure you want to delete this contact?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes',
+                        cancelButtonText: 'No'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            fetch(`/contact/${parseInt(contact[0])}/delete`, {
+                                method: 'POST'
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success === "Contact deleted successfully") {
+                                    delIcon.parentElement.parentElement.remove(); // REMOVE FROM DOM
+                                    Swal.fire('Deleted!', 'Contact has been deleted.', 'success');
+                                } else {
+                                    console.error('Failed to delete contact');
+                                    Swal.fire('Error!', 'Failed to delete contact.', 'error');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                Swal.fire('Error!', 'Something went wrong.', 'error');
+                            });
                         }
+                    });
                 });
-            })
 
                 // Add event listener to Update icon
                 updateIcon.addEventListener('click', function () {
@@ -94,8 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.localStorage.setItem("con_id",`${contact[0]}`);
                     window.location.pathname = `/View`;
                 })
-                
-                
+
+
                 if (contactdiv != null && detailsdiv != null) {
                     contactdiv.style.minHeight = `${detailsdiv.offsetHeight + 200}px`;
                 }
